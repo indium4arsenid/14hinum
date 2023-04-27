@@ -1,4 +1,6 @@
-# Repo for course "SS 2023 Advanced programming - Techniques and Practices" at UNi Graz Portfolio on separate Website
+# Repo for course "SS 2023 Advanced programming - Techniques and Practices" at UNi Graz.
+## More on my portfolio website at [https://indium4arsenid.github.io/14hinum/](https://indium4arsenid.github.io/14hinum/).
+
 
 ## Projects
 
