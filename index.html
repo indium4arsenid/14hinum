@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>My Portfolio - Advanced Programming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
@@ -20,7 +25,7 @@
             padding: 10px;
         }
 
-        h1 {
+        h1, h2 {
             margin: 0;
         }
 
@@ -28,6 +33,31 @@
             margin-top: 20px;
             padding: 20px;
             background-color: white;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .project {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin-bottom: 20px;
+            flex: 0 0 calc(33.33% - 20px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            transition: transform 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+        }
+
+        h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
         }
 
         ul {
@@ -52,19 +82,37 @@
 </head>
 <body>
     <header>
-        <h1>My Portfolio</h1>
+        <h1>Portfolio - Jakob Hinum-Wagner</h1>
+        <h2>SS2023 Advanced Programming - Techniques and Practices </h2>
     </header>
     <section>
         <h2>Projects</h2>
-        <ul>
-            <li>
-                <a href="https://github.com/your-username/project-one">Project One</a>: A responsive website built using HTML, CSS, and JavaScript.
-            </li>
-            <li>
-                <a href="https://github.com/your-username/project-two">Project Two</a>: A dynamic web application built with React and Redux.
-            </li>
-            <!-- Add more projects here -->
-        </ul>
+        <div class="container">
+            <div class="project">
+                <h3>Data Science</h3>
+                <ul>
+                    <li>
+                        Tba.
+                    </li>
+                </ul>
+            </div>
+            <div class="project">
+                <h3>Natural Language Processing</h3>
+                <ul>
+                    <li>
+                        Tba.
+                    </li>
+                </ul>
+            </div>
+			<div class="project">
+                <h3>Web Programming with Python</h3>
+                <ul>
+                    <li>
+                        Tba.
+                    </li>
+                </ul>
+            </div>
+        </div>
     </section>
 </body>
 </html>
