@@ -1,4 +1,4 @@
-# 14hinum  -  Portfolio for course "Advanced programming - Techniques and Practices" at UNi Graz
+# Portfolio for course "Advanced programming - Techniques and Practices" at UNi Graz
 
 ## Projects
 
