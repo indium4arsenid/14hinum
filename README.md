@@ -1,4 +1,4 @@
-# Portfolio for course "Advanced programming - Techniques and Practices" at UNi Graz
+# Repo for course "SS 2023 Advanced programming - Techniques and Practices" at UNi Graz Portfolio on separate Website
 
 ## Projects
 
