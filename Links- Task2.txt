@@ -1,0 +1,3 @@
+Link Github: https://github.com/indium4arsenid/14hinum
+Link Website: https://indium4arsenid.github.io/14hinum/
+Link Project: https://github.com/indium4arsenid/14hinum/blob/main/Topic1_Data%20Science/Data%20Science%20-%20Spaceship.ipynb
