@@ -1,12 +1,9 @@
-# Repo for course "SS 2023 Advanced programming - Techniques and Practices" at UNi Graz.
-## More on my portfolio website at [https://indium4arsenid.github.io/14hinum/](https://indium4arsenid.github.io/14hinum/).
-
-
+# Repo for course "Advanced programming - Techniques and Practices" at UNi Graz; More on my portfolio website at https://indium4arsenid.github.io/14hinum/
 ## Projects
 
 ### Data science
 
-1. Subtopics tba
+1. Analysis from kaggle -- Space titanic incident: https://www.kaggle.com/competitions/spaceship-titanic/data
 
 ### NLP (Natural Language Processing)
 
