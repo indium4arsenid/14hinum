@@ -1,0 +1,4 @@
+Link Github: https://github.com/indium4arsenid/14hinum
+Link Website: https://indium4arsenid.github.io/14hinum/
+Link Project: https://github.com/indium4arsenid/14hinum/blob/main/Topic2_NLP/text_classification_topic_model(1).ipynb
+Link Extra Report:https://github.com/indium4arsenid/14hinum/blob/main/Topic2_NLP/project_report.docx
