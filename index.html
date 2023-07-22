@@ -3,116 +3,477 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio - Advanced Programming</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
-        h1, h2 {
-            margin: 0;
-        }
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="style.css">
+    
 
-        section {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: white;
-        }
-
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .project {
-            background-color: #f4f4f4;
-            padding: 20px;
-            margin-bottom: 20px;
-            flex: 0 0 calc(33.33% - 20px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-            transition: transform 0.3s;
-        }
-
-        .project:hover {
-            transform: translateY(-5px);
-        }
-
-        h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        a {
-            color: #333;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #555;
-            text-decoration: underline;
-        }
-    </style>
+    <title>Jakob Hinum - Wagner</title>
 </head>
 <body>
-    <header>
-        <h1>Portfolio - Jakob Hinum-Wagner</h1>
-        <h2>SS2023 Advanced Programming - Techniques and Practices </h2>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="#" class="nav__logo">
+           Jakob Hinum
+        </a>
+
+        <div class="nav__menu" id="nav-menu">
+             <ul class="nav__list grid">
+              <li class="nav__item">
+                <a href="#home" class="nav__link">
+                  <i class="ri-home-2-line"></i> Home
+                </a>
+              </li>
+
+              <li class="nav__item">
+                <a href="#skills" class="nav__link">
+                  <i class="ri-trophy-line"></i> Skills
+                </a>
+              </li>
+
+              <li class="nav__item">
+                <a href="#qualification" class="nav__link">
+                    <i class="ri-book-open-line"></i> Qualification
+                </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="#portfolio" class="nav__link">
+                  <i class="ri-image-line"></i> Projects
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="#contact" class="nav__link">
+                  <i class="ri-chat-3-line"></i> Contact
+              </a>
+            </li>
+             </ul>
+
+             <!--close button-->
+             <div class="nav__close" id="nav-close">
+              <i class="ri-close-line"></i>
+             </div>
+        </div>     
+      </nav>
     </header>
-    <section>
-        <h2>Projects</h2>
-        <div class="container">
-            <div class="project">
-                <h3>Data Science</h3>
+
+    <!--==================== MAIN ====================-->
+    <main class="main">
+        <!--==================== HOME ====================-->
+        <section class="home section" id="home">
+          <div class="home__container container grid section__border">
+              <div class="home__data grid">
+                  <h1 class="home__title">
+                      Hi, I'm Jakob <br>
+                      A Student <br>
+                      Based In Austria <br>
+                  </h1>
+
+                  <div class="home__blob grid">
+                      <div class="home__perfil">
+                          <img src="assets/img/profile.png" alt="">
+                      </div>
+
+                      <img src="assets/img/shape-wawes.svg" alt="" class="home__shape-wawes">
+                      <img src="assets/img/shape-circle.svg" alt="" class="home__shape-circle">
+                  </div>
+
+                  <ul class="home__social">
+                    <li>
+                      <a href="https://www.linkedin.com/" target="_blank" class="home__social-link" aria-label="linkedin">
+                          <i class="ri-linkedin-box-line"></i>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="https://www.instagram.com/" target="_blank" class="home__social-link" aria-label="instagram">
+                          <i class="ri-instagram-line"></i>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="https://dribbble.com/" target="_blank" class="home__social-link" aria-label="dribbble">
+                          <i class="ri-dribbble-line"></i>
+                      </a>
+                    </li>
+                  </ul>
+              </div>
+
+          <!--==================== HOME INFO 1====================-->
+          <div class="home__info">
+            <div>
+              <h3 class="home__info-title">
+                  BIOGRAPHY
+              </h3>
+
+              <p class="home__info-description">
+                Hi, I'm Jakob Hinum-Wagner.
+                Currently studying at the TU-Graz Advanced Materials Science and Electrical engineering as PHD
+              </p>
+            </div>
+
+            <div>
+              <h3 class="home__info-title">
+                  CONTACT
+              </h3>
+
+              <p class="home__info-description">
+                Jakob Hinum-Wagner <br>
+                jakob.hinum@gmx.at<br>
+                06601566239 <br>
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="home__info-title">
+                 SERVICES
+              </h3>
+
+              <p class="home__info-description">
+                Design of Ring resonator structures in photonic integrate circuits <br>
+                Simulation of Integrated circuits<br>
+                Fabrication of integrated circuits at ams OSRAM <br>
+              </p>
+            </div> 
+          </div>
+
+         <!--==================== HOME INFO 2====================-->
+         <div class="home__info">
+          <div>
+            <h3 class="home__info-title">
+            YEARS OF EXPERIENCE in Semiconductor industry
+            </h3>
+
+            <p class="home__info-number">
+            02
+            </p>
+
+          </div>
+
+          <div>
+            <h3 class="home__info-title">
+            COMPLETED PROJECTS
+            </h3>
+          
+            <p class="home__info-number">
+            03  
+            </p>
+
+          </div>
+          
+          <div>
+            <h3 class="home__info-title">
+            COMPANIES WORKED
+            </h3>
+
+            <p class="home__info-number">
+            02
+            </p>
+
+          </div>  
+         </div>
+        </div>
+      </section>
+
+       <!--==================== SKILLS ====================-->
+       <section class="skills section" id="skills">
+        <h2 class="section__title">Skills</h2>
+        <span class="section__subtitle">My favorite skills</span>
+
+        <div class="skills__container container grid section__border">
+            <!--==================== SKILLS 1 ====================-->
+            <div class="skills__content">
+                <h3 class="skills__title">
+                    <i class="ri-braces-line"></i> Programming
+                </h3>
+
+                <div class="skills__info">
+                    <div class="skills__data">
+                        <div class="skills__blob">
+                            <img src="assets/img/matlab.png" alt="skills image">
+                        </div>
+
+                        <h3 class="skills__name">Matlab</h3>
+                        <span class="skills__subtitle">Intermediate</span>
+                    </div>
+
+                    <div class="skills__data">
+                        <div class="skills__blob">
+                            <img src="assets/img/Python.svg" alt="skills image">
+                        </div>
+
+                        <h3 class="skills__name">Python</h3>
+                        <span class="skills__subtitle">Intermediate</span>
+                    </div>
+
+                    <div class="skills__data">
+                        <div class="skills__blob">
+                            <img src="assets/img/R.svg" alt="skills image">
+                        </div>
+
+                        <h3 class="skills__name">R</h3>
+                        <span class="skills__subtitle">Intermediate</span>
+                    </div>
+
+                    <div class="skills__data">
+                        <div class="skills__blob">
+                            <img src="assets/img/html-1.svg" alt="skills image">
+                        </div>
+
+                        <h3 class="skills__name">HTML</h3>
+                        <span class="skills__subtitle">Beginner</span>
+                    </div>
+
+                    <div class="skills__data">
+                        <div class="skills__blob">
+                            <img src="assets/img/git-icon.svg" alt="skills image">
+                        </div>
+
+                        <h3 class="skills__name">Git</h3>
+                        <span class="skills__subtitle">Basic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!--==================== SKILLS 2 ====================-->
+            <div class="skills__content">
+                <h3 class="skills__title">
+                    <i class="ri-pantone-line"></i> Materials Sciences
+                </h3>
+
+                <div class="skills__info">
+                    <div class="skills__data">
+                        <div class="skills__blob">
+                            <img src="assets/img/AFM.jpg" alt="skills image">
+                        </div>
+
+                        <h3 class="skills__name">AFM</h3>
+                        <span class="skills__subtitle">Advanced</span>
+                    </div>
+
+                    <div class="skills__data">
+                        <div class="skills__blob">
+                            <img src="assets/img/fibsem.jpg" alt="skills image">
+                        </div>
+
+                        <h3 class="skills__name">SEM + FIB</h3>
+                        <span class="skills__subtitle">Basic</span>
+                    </div>
+
+                    <div class="skills__data">
+                        <div class="skills__blob">
+                            <img src="assets/img/LOM.png" alt="skills image">
+                        </div>
+
+                        <h3 class="skills__name">LOM</h3>
+                        <span class="skills__subtitle">Intermediate</span>
+                    </div>
+
+                    <div class="skills__data">
+                        <div class="skills__blob">
+                            <img src="assets/img/woollam.png" alt="skills image">
+                        </div>
+
+                        <h3 class="skills__name">ELI</h3>
+                        <span class="skills__subtitle">Intermediate</span>
+                    </div>
+
+                    <div class="skills__data">
+                        <div class="skills__blob">
+                            <img src="assets/img/FTIR.png" alt="skills image">
+                        </div>
+
+                        <h3 class="skills__name">FTIR</h3>
+                        <span class="skills__subtitle">Intermediate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <!--==================== QUALIFICATION ====================-->
+    <section class="qualification section" id="qualification">
+          <h2 class="section__title">Qualification</h2>
+          <span class="section__subtitle">Experience & education</span>
+
+          <div class="qualification__container container grid section__border"> 
+         <!--==================== Qualification 1 ====================-->
+            <div class="qualification_content">
+              <h3 class="qualification__title">
+                <i class="ri-pencil-ruler-2-line"></i> Education
+              </h3>
+
+              <div class="qualification__info">
+                <div>
+                    <h3 class="qualification__name">
+                      Doctoral Studies in Electrical Engineering
+                    </h3>
+                    <span class="qualification__country">TU-Graz</span>
+                    <span class="qualification__year">01.08.2021- Current </span>
+                  </div>
+
+                <div>
+                  <h3 class="qualification__name">
+                    Master in Advanced Materials Science NAWI Graz
+                  </h3>
+                  <span class="qualification__country">KFU Graz/TU-Graz</span>
+                  <span class="qualification__year">1.10.2019  - Current</span>
+                </div>
+
+                <div>
+                  <h3 class="qualification__name">
+                      Master in Technical Physics NAWI Graz
+                  </h3>
+                  <span class="qualification__country">KFU Graz/TU-Graz</span>
+                  <span class="qualification__year">18.01.2018  - 30.09.2019</span>
+                </div>
+
+                <div>
+                    <h3 class="qualification__name">
+                        Bachelor in Physics NAWI Graz
+                    </h3>
+                    <span class="qualification__country">KFU Graz/TU-Graz</span>
+                    <span class="qualification__year">1.10.2014 - 18.01.2018</span>
+                </div>
+              </div>
+            </div>
+
+        <!--==================== Qualification 2 ====================-->
+            <div class="qualification__content">
+              <h3 class="qualification__title">
+                <i class="ri-building-line"></i> Work
+              </h3>
+
+              <div class ="qualification__info">
+                <div>
+                  <h3 class="qualification__name">
+                    R&D Worker
+                  </h3>
+                  <span class="qualification__country">ams OSRAM</span>
+                  <span class="qualification__year">1.8.2021 - Current</span>
+                </div>
+
+                <div>
+                  <h3 class="qualification__name">
+                      Project assistant
+                  </h3>
+                  <span class="qualification__country">TU-Graz</span>
+                  <span class="qualification__year">1.3.2021- 1.8.2021</span>
+                </div>
+              </div> 
+              <img src="assets/img/shape-circle.svg" alt="qualification image" class="qualification__img"> 
+            </div>
+          </div>
+    </section>  
+ <!--==================== PROJECTS ====================-->
+ <section class="portfolio section" id="portfolio">
+    <h2 class="section__title">Projects: SS2023 Advanced Programming - Techniques and Practices </h2>
+    <div class="portfolio__container container grid bd-grid">
+        <div class="portfolio__img">
+            <img src="assets/img/project1.jpg" alt="">
+
+            <div class="portfolio__link">
                 <ul>
                     <li>
                         <a href="https://github.com/indium4arsenid/14hinum/tree/main/Topic1_Data%20Science/Data Science - Spaceship.ipynb">Data cleaning/Exploratory Data analysis and Machine learning analysis -- Space titanic incident from kaggle</a>
                     </li>
                 </ul>
             </div>
-            <div class="project">
-                <h3>Natural Language Processing</h3>
+        </div>
+        <div class="portfolio__img">
+            <img src="assets/img/project2.jpg" alt="">
+
+            <div class="portfolio__link">
                 <ul>
                     <li>
                          <a href="https://github.com/indium4arsenid/14hinum/blob/main/Topic2_NLP/text_classification_topic_model(1).ipynb">Natural Language processing from Data cleaning preparation over Machine learning modell development to analysis -- Music Dataset : 1950 to 2019</a>
                     </li>
                 </ul>
             </div>
-			<div class="project">
-                <h3>Web Programming with Python</h3>
-                <ul>
-                    <li>
-                        Tba.
-                    </li>
-                </ul>
+        </div>
+        <div class="portfolio__img">
+            <img src="assets/img/project3.jpg" alt="">
+
+            <div class="portfolio__link">
+                <span>project details/description go here...</span>
             </div>
         </div>
-    </section>
-</body>
+    </div>
+</section>
+ <!--==================== CONTACT ====================-->
+ <section class="contact section" id="contact">
+    <h2 class="section__title">Contact Me</h2>
+    <span class="section__subtitle">Get in touch</span>
+        <h3 class="contact__title">
+            <i class="ri-chat-3-line"></i> Get in touch for opportunities
+        </h3>
+
+    <div class="contact__container container grid section__border">
+        <div class="contact__content">
+
+            <div class="contact__info">
+                <div class="contact__data">
+                    <span class="contact__data-title">Phone</span>
+                    <span class="contact__data-info">436601566239</span>
+                    <a href="tel:+1234567890" target="_blank" class="contact__button">
+                        Call me <i class="ri-arrow-right-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact__content">
+            <div class="contact__info">
+                  <div class="contact__data">
+                      <span class="contact__data-title">Email</span>
+                      <span class="contact__data-info">jakob.hinum@gmx.at</span>
+                      <a href="mailto:jakob@gmail.com" target="_blank" class="contact__button">
+                          Write me <i class="ri-arrow-right-line"></i>
+                      </a>
+                  </div>
+              </div>
+        </div>
+    </div>
+</section>
+</main>            
+    <!--==================== FOOTER ====================-->
+    <footer class="footer">
+      <div class="footer__container container">
+          <span class="footer__copy">
+              &#169; Copyright Jakob Hinum - Wagner 2023
+          </span>
+      </div>
+  </footer>
+
+  <!--========== SCROLL UP ==========-->
+    <a href="#" class="scrollup" id="scroll-up"> 
+      <i class="ri-arrow-up-line"></i>
+  </a>
+
+  <!--=============== SCROLLREVEAL ===============-->
+    <script src="assets/js/scrollreveal.min.js"></script>
+    
+    
+  <!--=============== MAIN JS ===============-->
+    <script src="index.js"></script>
+  </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+ 

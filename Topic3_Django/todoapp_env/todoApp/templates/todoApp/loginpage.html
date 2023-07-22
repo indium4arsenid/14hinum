@@ -1,0 +1,145 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .column {
+            flex: 1;
+            height: 100%;
+        }
+
+        .column1 {
+            background-image: url("{% static 'images/todo.png' %}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .column2 {
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        form {
+            margin: auto;
+        }
+        .logout-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .custom-link {
+            position: absolute;
+            top: 25px;
+            right: 120px;
+            font-size: 20px;
+        }
+        .back-link {
+            position: absolute;
+            top: 20px;
+            right: 200px; 
+            font-size: 20px;
+        }
+        .forward-link {
+            position: absolute;
+            top: 20px;
+            right: 110px; 
+            font-size: 20px;}
+        .logout-custom {
+            position: absolute;
+            top: 5x;  
+            right: 10px; 
+        }
+
+</style>
+</head>
+<body>
+<div class="column column1"></div>
+<div class="column column2">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div></div>  <!-- Empty div for alignment -->
+                <a href="{% url 'home' %}" class="back-link">Home</a> 
+                {% if user.is_authenticated %}
+                    <a href="{% url 'todolist' %}" class="forward-link">TodoList</a>
+                {% else %}
+    
+                    <a href="#", onclick="loginAlert()", class="forward-link">TodoList</a>
+                {% endif %}
+
+                <a href="{% url 'logout' %}" class="btn btn-danger mt-2 mr-2 logout-button logout-custom">Logout</a>
+        </div>
+            
+        <div class="row justify-content-center">
+
+            <div class="col-md-6">
+
+                <h4>Welcome to the TODO App!</h4>
+                    {% if user.is_authenticated %}
+                        <p>You are logged in as {{ user.username }}. Please <a href="{% url 'logout' %}">Logout</a> before login another account.</p>
+                    {% endif %}
+                    <br>
+                <form method="post">
+                    {% csrf_token %}
+                        {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {% if message.tags %}
+                            <strong>{{ message.tags }}: </strong> 
+                        {% endif %}
+                        {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+    
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+		                  <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+		            </div>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
+                </div> <!-- form group -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+		                  <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		            </div>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                </div>
+                        <button type="submit" class="btn btn-primary" {% if user_authenticated %} disabled {% endif %}>Log in</button>
+                </form><br><br>
+                        <a href="/signup" class="btn btn-block" style="font-size: 20px; background-color: #A060FF; color: white; padding: 15px 0; max-width: 250px; margin: auto;">Create an Account</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- java script-->
+<script>
+
+function loginAlert() {
+  alert("Please Login to access your Todo List.");
+}
+
+</script>
+
+</body>
+</html>

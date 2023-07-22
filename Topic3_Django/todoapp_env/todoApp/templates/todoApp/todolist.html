@@ -1,0 +1,262 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+
+<style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .column {           
+            height: 100%;
+        }
+
+        .column1 {
+            background-image: url("{% static 'images/todo.png' %}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            flex:0.3;
+        }
+        .column2 {
+            background-color: white;
+            flex:1;
+        }
+        .back-link {
+            position: absolute;
+            top: 10px;
+            right: 110px; 
+            font-size: 20px;
+        }
+	   .column-width-custom {
+            width: 0.1%;
+        }
+        .button-custom {
+            position: absolute;
+            top: 60px;
+            right: 10px; 
+            left: 980px; 
+            font-size: 10px;
+        }
+</style>            
+</head>
+
+<body>
+
+<td class="tdStyle">     
+    <div class="column column1">  
+    </div>
+    <div class="column column2">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div></div>  <!-- Empty div for alignment -->
+            <a href="{% url 'home' %}" class="back-link">Home</a> 
+            <a href="{% url 'logout' %}" class="btn btn-danger mt-2 mr-2 logout-button">Logout</a>
+            </div>
+            
+            <div class="container">
+                <form method="POST">
+                {% csrf_token %}
+        
+                    <div class="row">
+                        <div class="col-md-7">
+                {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {% if message.tags %}
+                    <strong>{{ message.tags }}: </strong> 
+                {% endif %}
+                {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                {% endfor %}
+                {% endif %}
+
+		                  <div class="input-group mb-3">
+		                      <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-pen"></i></span>
+                              </div>
+		                          <input type="text" class="form-control" name="listname" id="listname" placeholder="Enter list name" required>
+                              <div class="input-group-append ml-1">
+		                          <input type="date" class="form-control" name="deadline" id="deadline" placeholder="Enter Deadline" required>
+                              </div>
+		                      <div class="input-group-append">
+                                    <button type="submit" name ="add" value="add" class="btn btn-primary btn-lg ml-2" style="width: 120px;">Add</button>
+                              </div> <!-- input-group-append -->
+		                  </div> <!-- input group mb-3-->
+					
+                
+                </div> <!-- col-md-7 -->
+            </div> <!-- row -->
+        </form>
+    </div>  <!-- container -->
+
+
+    <div class="container">
+        <form method="POST">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-md-12 button-custom">
+                    <input type="hidden" name="edited_value" id="edited_value" value="">
+                    <button name="edit" class='btn btn-success edit-item ' disabled>
+                            <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button id="open-button" name="open" class='btn btn-success open-item' disabled>
+    		              <i class="fas fa-folder-open"></i> Open
+	                </button>
+                    <button name="delete" class='btn btn-danger remove-item' disabled>
+                          <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                </div>
+            </div>
+    </div>
+
+    <div class="container">
+        <div class="row clearfix">
+    	   <div class="col-md-12 table-responsive">
+			 <table class="table table-bordered table-hover table-sortable" id="tab_logic">
+				<thead>
+					<th class="text-center col-1 column-width-custom">
+                <span class="input-group-text"> <i class="fa fa-circle"></i></span>
+                    </th>
+						<th class="text-center col-3">
+							Todo List Name
+						</th>
+						<th class="text-center col-2">
+							Total Todos
+						</th>
+						
+    					        <th class="text-center col-2">
+							Start Date
+						</th>
+        				        <th class="text-center col-2">
+							Deadline Date
+						</th>
+					</tr>
+				</thead>
+				<tbody id="todolist-body">
+                     
+                     {% for lst in todo_lists %}
+                            <tr>
+                            <td class="text-center col-1 column-width-custom">
+                              <input type="checkbox" class="row-checkbox" name="listid" value="{{ lst.listid }}" data-id="{{ lst.listid }}"/>
+                             </td>
+                             <td>{{ lst.listname }}</td>
+                             <td>{{ lst.todocount }}</td>
+                             <td>{{ lst.created_date|date:"F j, Y" }}</td>
+                             <td>{{ lst.deadline }}</td>
+                            </tr>
+                     {% endfor %}
+				</tbody> 
+        </form>
+                <tbody>
+                    <tr id="todolist-input-entry"><td class="text-center col-1 column-width-custom">
+                        <input type="checkbox" class="row-checkbox"/>
+                        </td>
+                        <td data-name="List Name">
+                            <input type="text" class="form-control add-todo-list" placeholder="Todo List Name" readonly/>
+                        </td>
+						<td data-name="Total Todo Count">
+						    <input type="text" name='todoCount' placeholder='0' class="form-control" readonly/>
+						</td>
+    					<td data-name="Creation Date">
+						    <input type="text" name='creationDate' placeholder='Today' class="form-control" readonly/>
+						</td>
+                        					<td data-name="Deadline Date">
+						    <input type="text" name='deadlineDate' placeholder='Deadline' class="form-control" readonly/>
+						</td>
+					</tr>
+ 
+                </tbody>
+			</table>
+            
+		</div>
+	</div>
+</div>
+</div>
+    
+<!-- Javascript functions for button check, click and alert-->
+<script>
+$(document).ready(function(){
+    // Add click event handler for row
+    $('tbody#todolist-body tr').click(function() {
+        // Check or uncheck the checkbox within this row
+        $(this).find('.row-checkbox').click();
+    });
+
+    $('.row-checkbox').click(function(event){
+        event.stopPropagation();
+        if ($('.row-checkbox:checked').length > 0) {
+            // Enable buttons if at least one checkbox is checked
+            $('.edit-item, .open-item, .remove-item').prop('disabled', false);
+        } else {
+            // Disable buttons if no checkboxes are checked
+            $('.edit-item, .open-item, .remove-item').prop('disabled', true);
+        }
+    });
+
+    // Add click event handlers for the edit-item and open-item buttons
+    $('.edit-item, .open-item').click(function() {
+        // Check if multiple checkboxes are selected
+        if ($('.row-checkbox:checked').length > 1) {
+            alert('Please select only one list name');
+            return false; // This will prevent the default behavior of the button
+        }
+    });
+});
+
+
+// This will be triggered when page is about to be unloaded
+$(window).on('unload', function() {
+    $('.row-checkbox').prop('checked', false);
+});
+
+$(document).ready(function() {
+    $('#open-button').click(function(e) {
+        e.preventDefault();
+        
+        var checkedBoxes = $('.row-checkbox:checked');
+        if (checkedBoxes.length === 1) {
+            var listId = checkedBoxes.data('id');
+            window.location.href = '/todolist/' + listId;
+        }
+    });
+// Add click event for 'edit-item' button
+    $('.edit-item').click(function(e) {
+        //e.preventDefault();  // Add this line to prevent form submission
+
+        // Check if multiple checkboxes are selected
+        if ($('.row-checkbox:checked').length > 1) {
+            alert('Please select only one list name');
+            return false; // This will prevent the default behavior of the button
+        } else {
+            // Get the value of the selected checkbox
+            var todoValue = $('.row-checkbox:checked').closest('tr').find('td:eq(1)').text();
+            // Prompt the user to edit the value
+            var editedValue = prompt('Edit Todo Value:', todoValue);
+
+            if (editedValue !== null && editedValue !== '') {
+                // Set the new edited value in the input field
+                $('#edited_value').val(editedValue);
+            } 
+        }
+    });
+
+});
+
+</script>
+</body>
+</html>

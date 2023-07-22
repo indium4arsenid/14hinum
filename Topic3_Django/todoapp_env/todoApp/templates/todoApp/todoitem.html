@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .column {           
+            height: 100%;
+        }
+
+        .column1 {
+            background-image: url("{% static 'images/todo.png' %}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            flex:0.3;
+        }
+        .column2 {
+            background-color: white;
+            flex:1;
+        }
+        .back-link {
+            position: absolute;
+            top: 10px;
+            right: 200px; 
+            font-size: 20px;
+        }
+	    .column-width-custom {
+            width: 0.1%;
+        }
+	   .heading-custom {
+    	    position: absolute;
+            top: 60px;  
+            left: 90px; 
+            color:white;
+           font-size: 30px;
+	    }
+	.button-custom {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+	}
+	.forward-link {
+            position: absolute;
+            top: 10px;
+            right: 110px; 
+            font-size: 20px;
+        }
+
+</style>            
+</head>
+					<!-- Main body of template start -->
+
+<body>
+        <!-- first-- div that have background image and user name on the left -->
+<td class="tdStyle">     
+<div class="column column1">
+		{% if user.is_authenticated %}
+			<div class="column column1"> <h4 class="heading-custom">Hi...{{ user }}</h4></div>
+		{% endif %}
+</div>   <!-- first-- ends here -->    
+    
+         <!-- second-- div that have all other tables and details on the right -->  
+<div class="column column2">
+<div class="container"> <!-- container1 starts here -->
+	<div class="row justify-content-between">
+        	<div></div>  <!-- empty div for alignment -->
+			     <!-- top left buttons -->
+        		<a href="{% url 'home' %}" class="back-link">Home</a> 
+        		<a href="{% url 'todolist' %}" class="forward-link">Todo List</a> 
+			    <a href="{% url 'logout' %}" class="btn btn-danger mt-2 mr-2 logout-button">Logout</a>
+    </div>        <!-- top left buttons ends here -->
+
+
+	<div class="container">
+	<div class="row">
+        	<div class="col-md-8">  <!-- class="col-md-8" starts here -->
+                <!-- form1 starts here -->
+            	<form method="POST">
+                    <!-- all the messages from views will display here with cross button -->
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {% if message.tags %}
+                    <strong>{{ message.tags }}: </strong> 
+                    {% endif %}
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <!-- messages block ends here -->
+
+                    <!-- add new item field and add button -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-pen"></i></span>
+                        </div>
+                            <input type="text" class="form-control" name="newtodo" id="newtodo" placeholder="Add new Todo" required>
+                        <div class="input-group-append">
+                            <button  type="submit" name ="add" value="add" class="btn btn-primary btn-lg ml-2" style="width: 120px;">Add</button>
+                        </div>
+                    </div>
+                    <!-- add new item field and add button ends here-->
+                </form>   <!-- form1 ends here -->
+
+            </div> <!-- class="col-md-8" ends here -->
+        
+        <!-- edit, open and delete buttons on right -->
+        <div class="col-md-4 button-custom">
+            <!-- form2 starts here -->
+            <form method="POST">
+                 {% csrf_token %}
+                <input type="hidden" name="edited_value" id="edited_value" value="">
+                <button name="edit" class='btn btn-success edit-item ' disabled>
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+                <button id="open-button" name="open" class='btn btn-success open-item' disabled>
+                    <i class="fas fa-check"></i> Done
+                </button>
+                <button name="delete" class='btn btn-danger remove-item' disabled>
+                    <i class="fas fa-trash-alt"></i> Delete
+                </button>
+             
+        </div>
+    </div>
+</div>  <!-- container1 ends here -->
+
+<!-- container2 starts here -->
+<!-- Top table 1 starts here -->
+<div class="container">
+    <div class="row ">
+        <div class="col-md-12 table-responsive">
+            <table class="table table-bordered table-hover table-sortable" id="tab_logic1" >
+                <thead>
+                    <tr>
+                       
+                        <th class="text-center col-3">
+                            Todo List Name: {{listname}}		
+                        </th>
+                        <th class="text-center col-3">
+                            Deadline: {{deadline}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center col-3">
+                            Total Todo Tasks : {{notdone_count}}
+                        </td>
+                        <td class="text-center col-3">
+                            Total Done Tasks : {{done_count}} 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Top table 1 ends here -->
+<!-- container2 ends here -->
+
+<!-- container3 starts here -->
+<!-- Table 2 on left starts here -->
+<div class="container">
+    <div class="row">
+    	<div class="col-md-6 table-responsive">
+		<table class="table table-bordered table-hover table-sortable" id="tab_logic1">
+			<thead>
+			<tr>
+				<th class="text-center col-1 column-width-custom">
+                	<span class="input-group-text"> <i class="fa fa-circle"></i></span>
+                </th>
+				<th class="text-center col-3">
+							Todo Task Name
+				</th>	
+			</tr>
+			</thead>
+			
+			<tbody id="todolist-body">
+			<!-- here we iterate over the data return from view file and display in table -->
+			{% for lst in todo_item %}
+			<tr><td class="text-center col-1 column-width-custom"><input type="checkbox" class="row-checkbox first-table-checkbox" name="todoid" value="{{ lst.todoid }}"/></td>
+                	<td>{{ lst.newtodo }}</td></tr>
+                                
+            {% endfor %}
+				
+            </tbody>
+            <tbody>
+                <tr id="todolist-input-entry">
+                    <td class="text-center col-1 column-width-custom">
+                
+                    </td>
+                    <td data-name="List Name">
+                        <input type="text" class="form-control add-todo-list" placeholder="Todo Task Name" readonly/>
+                    </td>
+    					
+				</tr>
+                </tbody>
+		</table>
+		</div>
+        <!-- Table 2 on left ends here -->
+
+        <!-- Table 3 on right starts here -->
+        <div class="col-md-6 table-responsive">
+            <table class="table table-bordered table-hover table-sortable" id="tab_logic2">
+            <thead>
+			    <tr>
+				    <th class="text-center col-1 column-width-custom">
+                		<span class="input-group-text"> <i class="fa fa-circle"></i></span>
+                    </th>
+				    <th class="text-center col-3">
+							Done Task Name 
+                    </th>
+				
+				</tr>
+			</thead>
+            <tbody id="todolist-body">
+            <!-- here we iterate over the data return from view file and display in table -->
+            {% for lst in done_items %}
+                <tr><td class="text-center col-1 column-width-custom"><input type="checkbox" class="row-checkbox second-table-checkbox" name="todoid" value="{{ lst.todoid }}"/>
+                </td><td><del>{{ lst.newtodo }}</del></td></tr>
+            {% endfor %}
+            </tbody>
+            </form>
+            <!-- form2 ends here -->
+            <tbody>
+                <tr>
+                    <td>
+                    </td>
+                    <td data-name="List Name">
+                        <input type="text" class="form-control add-todo-list" placeholder="Done Task Name" readonly/>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+	</div>  <!-- conainer3 ends here -->
+</div> <!-- coulmn2 div ends here -->
+<script>
+$(document).ready(function() {
+    // Add click event handler for row
+    $('tbody#todolist-body tr').click(function() {
+        // Check or uncheck the checkbox within this row
+        $(this).find('.row-checkbox').click();
+    });
+
+    $('.row-checkbox').click(function(event) {
+        event.stopPropagation();
+
+        if ($(this).hasClass('second-table-checkbox')) {
+            if ($('.first-table-checkbox:checked').length > 0) {
+                // A checkbox in the first table is checked, so don't allow this checkbox to be checked
+                return false; // This will prevent the default behavior of the checkbox
+            }
+        }
+        
+        if ($(this).hasClass('first-table-checkbox')) {
+            if ($('.second-table-checkbox:checked').length > 0) {
+                // A checkbox in the second table is checked, so don't allow this checkbox to be checked
+                return false; // This will prevent the default behavior of the checkbox
+            }
+        }
+    
+
+        if ($('.row-checkbox:checked').length > 0) {
+            // Enable buttons if at least one checkbox is checked
+            $('.edit-item, .remove-item').prop('disabled', false);
+            // Only enable the open button if the checkbox isn't part of the second table
+            if (!$(this).hasClass('second-table-checkbox')) {
+                $('.open-item').prop('disabled', false);
+            }
+            
+            if ($(this).hasClass('second-table-checkbox')) {
+                $('.edit-item').prop('disabled', true);
+            }
+
+            	
+
+        } else {
+            // Disable buttons if no checkboxes are checked
+            $('.edit-item, .open-item, .remove-item').prop('disabled', true);
+        }
+    });
+
+    // Add click event for 'edit-item' button
+    $('.edit-item').click(function(e) {
+       // e.preventDefault();  // Add this line to prevent form submission
+
+        // Check if multiple checkboxes are selected
+        if ($('.row-checkbox:checked').length > 1) {
+            alert('Please select only one list name');
+            return false; // This will prevent the default behavior of the button
+        } else {
+            // Get the value of the selected checkbox
+            var todoValue = $('.row-checkbox:checked').closest('tr').find('td:last').text();
+            // Prompt the user to edit the value
+            var editedValue = prompt('Edit Todo Value:', todoValue);
+
+            if (editedValue !== null && editedValue !== '') {
+                // Set the new edited value in the input field
+                $('#edited_value').val(editedValue);
+            }
+        }
+    });
+
+
+});
+</script>
+
+
+</body>
+</html>
