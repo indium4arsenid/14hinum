@@ -1,0 +1,4 @@
+Link Github: https://github.com/indium4arsenid/14hinum
+Link Website: https://indium4arsenid.github.io/14hinum/
+Link Project: https://github.com/indium4arsenid/14hinum/tree/main/Topic3_Django/todoapp_env
+Link Extra Report:https://github.com/indium4arsenid/14hinum/blob/main/Topic3_Django/Documentation.docx

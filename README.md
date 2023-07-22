@@ -11,4 +11,4 @@
 
 ### Web apps with Python
 
-1. Subtopics tba
+1. Django based to-do-list
